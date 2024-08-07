@@ -1,0 +1,32 @@
+devices:
+- reference: MOXA144_laboratorio
+  gateway: 10.130.20.144
+  modbusid: 1
+  loop: 5
+  3x:
+  - address: 2048
+    count: 16
+    channels:
+    - ch: 3
+      item: TC-1
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 5
+      item: TC-2
+      unit: "ºC"
+      const: 0.001
+      errorcode: -1
+    - ch: 7
+      item: TC3
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+  - address: 2048
+    count: 16
+    channels:
+    - ch: 9
+      item: TC4
+      unit: "ºC"
+      const: 0.001
+      errorcode: -1

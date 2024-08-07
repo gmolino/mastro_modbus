@@ -1,0 +1,12 @@
+FROM node:lts-alpine
+
+RUN npm install -g http-server
+WORKDIR /app
+COPY ./mastro_app/package*.json /app/
+RUN npm install
+COPY ./mastro_app/ /app/
+RUN npm run build
+
+EXPOSE 8080
+# CMD [ "http-server", "./dist" ]
+CMD [ "http-server", "-P", "http://localhost:8080?", "./dist" ]

@@ -1,0 +1,121 @@
+devices:
+- reference: MOXA87
+  gateway: 192.168.127.87
+  modbusid: 1
+  loop: 100
+  3x:
+  - address: 2048
+    count: 16
+    channels:
+    - ch: 1 
+      item: DEMO2_Espuma_Derecha
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 3
+      item: DEMO2_Espuma_Izquierda
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 5
+      item: DEMO2_FOAM_Pared
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 7
+      item: DEMO2_Placa_Izq
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 9
+      item: DEMO2_Horm_Pared
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 11
+      item: DEMO2_PERI_Der
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 13
+      item: DEMO2_PERI_Int_Aereo_Izq
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 15
+      item: DEMO2_PLACA_Der
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+- reference: MOXA86
+  gateway: 192.168.127.86
+  modbusid: 1
+  loop: 100
+  3x:
+  - address: 2048
+    count: 16
+    channels:
+    - ch: 1 
+      item: DEMO2_Horm_Pared_Aereo
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 3
+      item: DEMO2_PERI_Int_Aereo_Der
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 5
+      item: DEMO2_PERI_Izq
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 7
+      item: DEMO2_PLACA_Pared_Der 
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 9
+      item: DEMO2_PLACA_Ext_Pared
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 11
+      item: DEMO2_PERI_Ext_Izq
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 13
+      item: DEMO2_PERI_Ext_Der
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+- reference: MOXA85
+  gateway: 192.168.127.85
+  modbusid: 1
+  loop: 100
+  3x:
+  - address: 2048
+    count: 16
+    channels:
+    - ch: 1 
+      item: DEMO2_Placa_Ext_Der_Aereo
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 3
+      item: DEMO2_Placa_Ext_Der
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 5
+      item: DEMO2_Placa_Ext_Izq_Aereo
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 7
+      item: DEMO2_Placa_Ext_Izq
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+

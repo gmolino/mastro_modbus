@@ -1,0 +1,36 @@
+devices:
+- reference: verde_MOXA144
+  gateway: 10.130.20.144
+  modbusid: 1
+  loop: 5
+  3x:
+  - address: 2048
+    count: 16
+    channels:
+    - ch: 3
+      item: verde_TC1
+      unit: "ºC"
+      const: 0.001
+      errorcode: -1
+    - ch: 5
+      item: verde_TC2
+      unit: "ºC"
+      const: 0.001
+      errorcode: -1
+  # - address: 2048
+  #   count: 16
+  #   channels:
+  #   - ch: 7
+  #     item: verde_TC3
+  #     unit: "ºC"
+  #     const: 0.001
+  #     errorcode: -1
+  4x:
+  - address: 2048
+    count: 16
+    channels:
+    - ch: 9
+      item: green_TC9
+      unit: "ºC"
+      const: 0.00001
+      errorcode: -1

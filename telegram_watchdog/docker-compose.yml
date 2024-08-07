@@ -1,0 +1,11 @@
+version: "3.2"
+services:
+  watchdog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"

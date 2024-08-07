@@ -1,0 +1,29 @@
+devices:
+  - reference: NOVUS143
+    gateway: 10.130.20.143
+    modbusid: 143
+    loop: 30
+    4x:
+    - address: 0
+      count: 14
+      channels:
+        - ch: 3
+          item: Ch01
+          const: 0.0158
+          unit: "W/m²"
+          errorcode: -1000
+        - ch: 4
+          item: Ch02
+          const: 0.0158
+          unit: "W/m²"
+          errorcode: -1000
+        - ch: 5
+          item: Ch03
+          const: 0.017
+          unit: "W/m²"
+          errorcode: -1000
+        - ch: 6
+          item: Ch04
+          const: 0.0163
+          unit: "W/m²"
+          errorcode: -1000

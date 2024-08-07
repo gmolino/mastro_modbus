@@ -1,0 +1,37 @@
+devices:
+  - reference: ADAM6017-127
+    gateway: 192.168.127.127
+    modbusid: 1
+    loop: 95
+    4x:
+      - address: 0
+        count: 10
+        channels:
+               - ch: 4
+                 item: DEMO1HFDer
+                 unit: "w/m2"
+                 errorcode: -1
+                 unsigned: true
+                 formula: (x-(65535/2))/(65535/2)*150
+                 const: 10
+               - ch: 5
+                 item: DEMO1HFIzq
+                 unit: "w/m2"
+                 errorcode: -1
+                 unsigned: true
+                 formula: (x-(65535/2))/(65535/2)*150
+                 const: 10
+               - ch: 6
+                 item: DEMO1HFDerBIS
+                 unit: "w/m2"
+                 errorcode: -1
+                 unsigned: true
+                 formula: (x-(65535/2))/(65535/2)*150
+                 const: 10
+               - ch: 7
+                 item: DEMO2PlacaPared
+                 unit: "w/m2"
+                 errorcode: -1
+                 unsigned: true
+                 formula: (x-(65535/2))/(65535/2)*150
+                 const: 10

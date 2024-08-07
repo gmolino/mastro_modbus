@@ -1,0 +1,19 @@
+FROM node:current-alpine3.20
+RUN npm install -g @vue/cli
+RUN mkdir /app
+WORKDIR /app
+COPY ./mastro_app/ /app/
+RUN yarn install
+EXPOSE 8080
+CMD ["npm", "run", "serve"]
+
+## SERVER BUILD
+# FROM node:current-alpine3.20
+# RUN npm install -g http-server
+# WORKDIR /app
+# COPY ./mastro_app/package*.json /app/
+# RUN npm install
+# COPY ./mastro_app/ /app/
+# RUN npm run build
+# EXPOSE 8080
+# CMD [ "http-server", "dist" ]

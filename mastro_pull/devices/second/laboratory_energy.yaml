@@ -1,0 +1,38 @@
+devices:
+- reference: CiRC104
+  gateway: 10.130.20.104
+  modbusid: 3
+  loop: 65 
+  4x:
+  - address: 0
+    count: 8
+    channels:
+    - ch: 0
+      item: Volt
+      unit: "V"
+      const: 0.1
+    - ch: 1
+      item: Current
+      unit: "A"
+      const: 0.1
+    - ch: 3
+      item: ActivePower
+      unit: "kW"
+      const: 1
+    - ch: 4
+      item: ReactivePower
+      unit: "kVar"
+  - address: 45
+    count: 2
+    channels:
+    - ch: 1
+      item: ActiveEnergyConsumed
+      unit: "kWh"
+      const: 0.01
+  - address: 55
+    count: 2
+    channels:
+    - ch: 1
+      item: ActiveEnergyGenerated
+      unit: "kWh"
+      const: 0.01

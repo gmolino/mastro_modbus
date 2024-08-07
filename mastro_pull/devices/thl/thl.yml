@@ -1,0 +1,70 @@
+devices:
+- reference: THL41
+  gateway: 10.130.20.41
+  modbusid: 1
+  loop: 100
+  clients:
+  - reference: THL20_yellow
+    modbusid: 20
+    3x:
+    - address: 0
+      count: 18
+      channels:
+      - ch: 6
+        item: Temp
+        const: 0.1
+        unit: "ºC"
+      - ch: 7 
+        item: Light
+        unit: "lux"
+      - ch: 8 
+        item: Humd
+        unit: "%"
+  - reference: THL28_red
+    modbusid: 28
+    3x:
+    - address: 0
+      count: 18
+      channels:
+      - ch: 6
+        item: Temp
+        const: 0.1
+        unit: "ºC"
+      - ch: 7 
+        item: Light
+        unit: "lux"
+      - ch: 8 
+        item: Humd
+        unit: "%"
+  - reference: THL29_green
+    modbusid: 29
+    3x:
+    - address: 0
+      count: 18
+      channels:
+      - ch: 6
+        item: Temp
+        const: 0.1
+        unit: "ºC"
+      - ch: 7 
+        item: Light
+        unit: "lux"
+      - ch: 8 
+        item: Humd
+        unit: "%"
+  # - reference: THL30_blue
+  #   modbusid: 30
+  #   3x:
+  #   - address: 0
+  #     count: 18
+  #     channels:
+  #     - ch: 6
+  #       item: Temp
+  #       const: 0.1
+  #       unit: "ºC"
+  #     - ch: 7 
+  #       item: Light
+  #       unit: "lux"
+  #     - ch: 8 
+  #       item: Humd
+  #       unit: "%"

@@ -1,0 +1,40 @@
+devices:
+  - reference: ADAM6017
+    gateway: 10.130.20.123
+    modbusid: 1
+    loop: 4
+    4x:
+      - address: 1
+        count: 18
+        channels:
+          - ch: 3
+            item: AI4
+            unit: "w/m2"
+            errorcode: -1
+            unsigned: true
+            formula: (x-(65535/2))/(65535/2)*150
+    0x:
+      - address: 16
+        count: 2
+        channels:
+          - ch: 0
+            item: IO0
+            writable: true
+          - ch: 1
+            item: IO1
+            writable: true
+
+  # - reference: sensor fake
+  #   gateway: 10.130.20.122
+  #   modbusid: 1
+  #   loop: 4
+  #   4x:
+  #     - address: 1
+  #       count: 18
+  #       channels:
+  #         - ch: 3
+  #           item: AI4
+  #           unit: "w/m2"
+  #           errorcode: -1
+  #           unsigned: true
+  #           formula: (x-(65535/2))/(65535/2)*150

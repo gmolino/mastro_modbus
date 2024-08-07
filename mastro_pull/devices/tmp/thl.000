@@ -1,0 +1,38 @@
+devices:
+        - reference: THL170
+          gateway: 192.168.127.170
+          modbusid: 1
+          loop: 100
+          clients:
+                  - reference: THL32_D1
+                    modbusid: 32
+                    3x:
+                            - address: 0
+                              count: 18
+                              channels:
+                                      - ch: 6
+                                        item: Temp
+                                        const: 0.1
+                                        unit: "ºC"
+                                      - ch: 7 
+                                        item: Light
+                                        unit: "lux"
+                                      - ch: 8 
+                                        item: Humd
+                                        unit: "%"
+                  - reference: THL90_D2
+                    modbusid: 90
+                    3x:
+                            - address: 0
+                              count: 18
+                              channels:
+                                      - ch: 6
+                                        item: Temp
+                                        const: 0.1
+                                        unit: "ºC"
+                                      - ch: 7 
+                                        item: Light
+                                        unit: "lux"
+                                      - ch: 8 
+                                        item: Humd
+                                        unit: "%"

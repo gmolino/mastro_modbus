@@ -1,0 +1,123 @@
+version: "3.2"
+services:
+  pgtimescale:
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    image: timescale/timescaledb:latest-pg14
+    restart: unless-stopped
+    volumes:
+      - timescaledb-storage:/var/lib/timescaledb:rw
+      - ../../mastro_pull/db/dump.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_PASSWORD=timescalespass
+    ports:
+      - 5432:5432
+    networks:
+      - traefik
+        #labels:
+        #- "traefik.enable=true"
+        #- "traefik.http.routers.reinvent_influxdb.rule=Host(`grafana.reinvent.witmo.eu`)"
+        #- "traefik.http.routers.reinvent_influxdb.entrypoints=websecure"
+        #- "traefik.http.routers.reinvent_influxdb.tls=true"
+        #- "traefik.http.routers.reinvent_influxdb.tls.certresolver=accionaresolver"
+        #- "traefik.http.routers.reinvent_influxdb.service=reinvent_influxdb"
+        #- "traefik.http.services.reinvent_influxdb.loadbalancer.server.port=8086"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 30s
+      timeout: 30s
+      retries: 10
+    restart: unless-stopped
+    ports:
+      - 5672:5672
+    environment:
+      - RABBITMQ_NODENAME=rabbitmq@rabbitmq
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq/
+    networks:
+      - traefik
+
+  algete_meteo_consumer:
+    build:
+      context: ../../
+      dockerfile: ./docker/server/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .algete_env
+    volumes:
+      - ../../mastro_consumer/:/app/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+    networks:
+      - traefik
+ 
+  mastro_consumer:
+    build:
+      context: ../../
+      dockerfile: ./docker/server/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ../../mastro_consumer/:/app/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+    networks:
+      - traefik
+
+        #  watchdog:
+        #build:
+        #context: ../../
+        #dockerfile: ./docker/server/Dockerfile_watchdog
+        #restart: unless-stopped
+        #env_file:
+        #- .env
+        #volumes:
+        #- ../../telegram_watchdog/:/app/
+        #logging:
+        #driver: "json-file"
+        #options:
+        #max-size: "10m"
+        #networks:
+        #- traefik
+
+  grafana:
+    image: grafana/grafana-enterprise
+    restart: unless-stopped
+    #ports:
+    #  - 3000:3000
+    user: "104"
+    volumes:
+      - grafana-storage:/var/lib/grafana:rw
+
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.reinvent.witmo.eu`)"
+      - "traefik.http.routers.grafana.entrypoints=websecure"
+      - "traefik.http.routers.grafana.tls=true"
+      - "traefik.http.routers.grafana.tls.certresolver=accionaresolver"
+      - "traefik.http.routers.grafana.service=grafana"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  timescaledb-storage:
+  grafana-storage:
+  rabbitmq:

@@ -1,0 +1,49 @@
+devices:
+  - reference: NOVUS143
+    gateway: 192.168.127.143
+    modbusid: 143
+    loop: 105
+    4x:
+    - address: 0
+      count: 14
+      channels:
+        - ch: 3
+          item: DEMO2HFIzqExt
+          const: 0.0169
+          unit: "W/m²"
+          errorcode: -1000
+        - ch: 4
+          item: DEMO2HFDer
+          const: 0.01669
+          unit: "W/m²"
+          errorcode: -1000
+        - ch: 5
+          item: DEMO2HFIzq
+          const: 0.01697
+          unit: "W/m²"
+          errorcode: -1000
+        - ch: 6
+          item: DEMO2HFPeri
+          const: 0.01763
+          unit: "W/m²"
+          errorcode: -1000
+        - ch: 7
+          item: DEMO2HFPlacaIzq
+          const: 0.01628
+          unit: "W/m²"
+          errorcode: -1000
+        - ch: 8
+          item: DEMO2HFPlacaDer
+          const: 0.01650
+          unit: "W/m²"
+          errorcode: -1000
+        - ch: 9
+          item: DEMO2HFPlacaDerExt
+          const: 0.016
+          unit: "W/m²"
+          errorcode: -1000
+        - ch: 10
+          item: DEMO2HFPlacaParedExt
+          const: 0.016
+          errorcode: -1000
+          unit: "W/m²"

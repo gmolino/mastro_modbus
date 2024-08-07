@@ -1,0 +1,50 @@
+devices:
+- reference: MOXA88
+  gateway: 192.168.127.88
+  modbusid: 1
+  loop: 100
+  3x:
+  - address: 2048
+    count: 16
+    channels:
+    - ch: 1 
+      item: DEMO2TIzq1
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 3
+      item: DEMO2TDer1
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 5
+      item: DEMO2TDerAereo
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 7
+      item: DEMO2TIzqAereo
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 9
+      item: DEMO1TIzqAereo
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 11
+      item: DEMO1TDerAereo
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 13
+      item: DEMO1TIzq1
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+    - ch: 15
+      item: DEMO1TDer1
+      unit: "ºC"
+      const: 0.1
+      errorcode: -1
+

@@ -1,0 +1,26 @@
+services:
+  backend:
+    image: 'sincere_maintenance:latest'
+    restart: always
+    networks:
+      - develop_mastro_net
+    env_file:
+      - .env
+    expose:
+      - 9000
+    ports:
+      - "9000:5000"
+    build:
+      context: ./app
+      dockerfile: ../Dockerfile
+      args:
+        INSTALL_DEV: ${INSTALL_DEV-false}
+    volumes:
+      - ./:/app/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+networks:
+  develop_mastro_net:
+    external: true

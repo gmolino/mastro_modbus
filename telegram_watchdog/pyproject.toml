@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "telegram-watchdog"
+version = "0.1.0"
+description = ""
+authors = ["Alvaro Garcia Molino <alvaro.garcia.molino@gmolino.com>"]
+readme = "README.md"
+packages = [{include = "telegram-watchdog"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pendulum = "^3.0.0"
+requests = "^2.31.0"
+ping3 = "^4.0.4"
+python-telegram-bot = "^20.7"
+pydantic-settings = "^2.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

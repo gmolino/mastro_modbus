@@ -1,0 +1,63 @@
+devices:
+- reference: ADAM123
+  gateway: 10.130.20.123
+  modbusid: 1
+  loop: 10
+  4x:
+  - address: 0
+    count: 16
+    channels:
+    - ch: 0
+      item: CH0_123
+      unit: ""
+      const: 1
+      unsigned: True
+      formula: (x-(65535/2))/(65535/2)*150
+      errorcode: -1
+    - ch:  4
+      item: CH4_123
+      unit: ""
+      const: 1
+      unsigned: True
+      formula: (x-(65535/2))/(65535/2)*150
+      errorcode: -1
+  0x:
+    - address: 16
+      count: 2
+      channels:
+      - ch: 0
+        item: IO0
+        writable: true
+      - ch: 1
+        item: IO1
+        writable: true
+- reference: ADAM125
+  gateway: 10.130.20.125
+  modbusid: 1
+  loop: 295
+  4x:
+  - address: 0
+    count: 16
+    channels:
+    - ch: 0
+      item: CH0_125
+      unit: ""
+      const: 1
+      unsigned: True
+      formula: (x-(65535/2))/(65535/2)*150
+      errorcode: -1
+    - ch:  4
+      item: CH4_125
+      unit: ""
+      const: 1
+      unsigned: True
+      formula: (x-(65535/2))/(65535/2)*150
+      errorcode: -1
+  0x:
+    - address: 16
+      count: 2
+      channels:
+      - ch: 0
+        item: IO0
+      - ch: 1
+        item: IO1

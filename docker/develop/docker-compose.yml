@@ -1,0 +1,97 @@
+services:
+  mastro_loop:
+    image: 'mastro_pull:develop'
+    build:
+      context: ../../
+      dockerfile: ./docker/develop/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ../../mastro_pull/:/app/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+    networks:
+      mastro_net:
+        ipv4_address: 172.21.0.2
+
+  mastro_api:
+    image: 'mastro_api:develop'
+    build:
+      context: ../../
+      dockerfile: ./docker/develop/Dockerfile_api
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ../../mastro_api/:/app/
+    expose:
+      - 5000
+    ports:
+      - "5000:5000"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+    networks:
+      mastro_net:
+        ipv4_address: 172.21.0.8
+
+  mastro_app:
+    image: 'mastro_app:develop'
+    build:
+      context: ../../
+      dockerfile: ./docker/develop/Dockerfile_app
+    restart: unless-stopped
+    environment:
+      - AXIOS_URL=http://localhost:5000
+    volumes:
+      - ../../mastro_app/:/app/
+    ports:
+      - "8080:8080"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+    networks:
+      mastro_net:
+        ipv4_address: 172.21.0.9
+
+    # networks:
+    #   - traefik
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.mastro_app.rule=Host(`reinvent.witmo.eu`)"
+    #   - "traefik.http.routers.mastro_app.entrypoints=websecure"
+    #   - "traefik.http.routers.mastro_app.tls=true"
+    #   - "traefik.http.routers.mastro_app.tls.certresolver=accionaresolver"
+    #   - "traefik.http.routers.mastro_app.service=mastro_app"
+    #   - "traefik.http.services.mastro_app.loadbalancer.server.port=8080"
+
+  # mastro_built:
+  #   image: 'mastro_built:develop'
+  #   build:
+  #     context: ../../
+  #     dockerfile: ./docker/develop/Dockerfile_built
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ../../mastro_app/:/app/
+  #   ports:
+  #     - "8080:8080"
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "10m"
+  #   networks:
+  #     mastro_net:
+  #       ipv4_address: 172.21.0.10
+
+networks:
+  mastro_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.0.0/24

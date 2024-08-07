@@ -1,0 +1,5 @@
+pendulum
+requests
+ping3
+python-telegram-bot
+python-telegram-bot[job-queue]

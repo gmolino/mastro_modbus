@@ -1,0 +1,20 @@
+FROM python:3.11
+
+#Directorio en contenedor
+WORKDIR /app
+RUN mkdir /app/temp
+
+# Install Poetry
+RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python3 - && \
+   cd /usr/local/bin && \
+   ln -s /etc/poetry/bin/poetry
+
+COPY ./mastro_api/ /app/
+#COPY ./pyproject.toml ./poetry.lock* /app/
+
+RUN poetry install --no-root --only main
+RUN poetry update uvicorn
+ENV PYTHONPATH=/app
+
+#CMD tail -f /dev/null
+CMD poetry run uvicorn app.main:app --host=0.0.0.0 --port=5000 --reload

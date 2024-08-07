@@ -1,0 +1,5 @@
+pandas
+pika
+pendulum
+pymodbus[repl]
+psycopg2

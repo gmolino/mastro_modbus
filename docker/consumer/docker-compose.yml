@@ -1,0 +1,20 @@
+version: "3.2"
+services:
+  mastro_consumer:
+    build:
+      context: ../../
+      dockerfile: /Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ../../mastro_consumer/:/app/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+    networks:
+      - develop_default
+
+networks:
+  develop_default:
+    external: true

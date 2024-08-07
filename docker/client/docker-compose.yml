@@ -1,0 +1,95 @@
+version: "3.2"
+services:
+
+  pgtimescale:
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    image: timescale/timescaledb:latest-pg14
+    restart: unless-stopped
+    volumes:
+      - timescaledb-storage:/var/lib/timescaledb:rw
+      - ../../mastro_pull/db/dump.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_PASSWORD=timescalespass
+    ports:
+      - 5432:5432
+    networks:
+            #mastro_enp1s0:
+        mastro_net:
+                ipv4_address: 172.21.0.5
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 30s
+      timeout: 30s
+      retries: 10
+    restart: unless-stopped
+    ports:
+      - 5672:5672
+    environment:
+      - RABBITMQ_NODENAME=rabbitmq@rabbitmq
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq/
+    networks:
+      mastro_net:
+        ipv4_address: 172.21.0.4
+
+  mastro_loop:
+    build:
+      context: ../../
+      dockerfile: ./docker/develop/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ../../mastro_pull/:/app/
+    links:
+      - rabbitmq
+      - pgtimescale
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      pgtimescale:
+        condition: service_healthy
+    networks:
+        mastro_enp1s0:
+        mastro_net:
+                ipv4_address: 172.21.0.2
+
+  grafana:
+    image: grafana/grafana-enterprise
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    user: "104"
+    volumes:
+      - grafana-storage:/var/lib/grafana:rw
+    networks:
+      mastro_net:
+        ipv4_address: 172.21.0.3
+
+volumes:
+  grafana-storage:
+  rabbitmq:
+  timescaledb-storage:
+
+networks:
+  mastro_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.0.0/24
+  mastro_enp1s0:
+          external: true

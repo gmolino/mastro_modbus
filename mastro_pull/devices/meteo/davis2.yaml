@@ -1,0 +1,110 @@
+devices:
+- reference: DAVIS2_Meteo
+  gateway: 10.130.20.182
+  loop: 25
+  modbusid: 1
+  4x:
+  - address: 1
+    count: 92
+    channels:
+    - ch: 2
+      item: Barometer
+      const: 1
+      unit: inHg
+    - ch: 3
+      item: InsideTemperature
+      const: 0.1
+      unit: "Cº"
+    - ch: 4
+      item: InsideHumidity
+      const: 1
+      unit: "%"
+    - ch: 5
+      item: OutsideTemperature
+      const: 0.1
+      unit": "Cº"
+    - ch: 6
+      item: WindSpeed
+      const: 1
+      unit": "mph"
+    - ch: 7
+      item: 10MinAvrgWindSpeed
+      const: 1
+      unit": "mph"
+    - ch: 8
+      item: WindDirection
+      const: 1
+      unit": "degrees"
+    - ch: 17
+      item: OutsideHumidity
+      const: 1
+      unit": "%"
+    - ch: 22
+      item: RainRate
+      const: 1
+      unit": Inches/hour
+    - ch: 23
+      item: UVIndex
+      const: 1
+    - ch: 24
+      item: SolarRadiation
+      const: 1
+      unit: "W/m2"
+    - ch: 25
+      item: StormRain
+      const: 1
+      unit: Inches
+    - ch: 48
+      item: ForecastIcons
+    - ch: 49
+      item: ForecastRuleNumber
+    - ch: 50
+      const: 1
+      item: TimeSunrise
+      unit: HHMM
+    - ch: 51
+      const: 1
+      item: TimeSunset
+      unit: HHMM
+    - ch: 52
+      const: 1
+      item: WetBulb
+      unit: HHMM
+    - ch: 62
+      const: 1
+      item: DewPoint
+      unit: "°F"
+    - ch: 63
+      const: 1
+      item: HeatIndex
+      unit: "°F"
+    - ch: 64
+      const: 1
+      item: WindChill
+      unit: "°F"
+    - ch: 65
+      const: 1
+      item: THSWIndex
+      unit: "°F"
+    - ch: 66
+      const: 1
+      item: Last15minRain
+      unit: Inches
+    - ch: 67
+      const: 1
+      item: LastHourRain
+      unit: Inches
+    - ch: 68
+      const: 1
+      item: Last24HourRain
+      unit: Inches
+    - ch: 72
+      const: 1
+      item: BarometricSensorRawReading
+      unit: Inches
+    - ch: 73
+      const: 1
+      item: AbsoluteBarometricPressure
+      unit: Inches
+    - ch: 81
+      item: IpLastOct
